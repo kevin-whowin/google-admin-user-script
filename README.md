@@ -27,5 +27,3 @@ To streamline and automate the creation of new user accounts in Google Workspace
 ## Notes
 - Ensure you have the necessary permissions to create users and assign licenses
 - Make the HTML prettier if u want lol, we didn't really need it to be fancy
-## Support
-No support is avaliable lol ur on ur own after this 
