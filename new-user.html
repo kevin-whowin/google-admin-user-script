@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <h1>Kevin's new user script</h1>
+    <form id="addUserForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required><br>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required><br>
+      <p>
+        City:
+        <select id="selectCity">
+          <option selected disabled>Choose City</option>
+          <option value="City1">City1</option>
+          <option value="City2">City2</option>
+          <option value="City3">City3</option>
+          <option value="City4">City4</option>
+        </select>
+      </p>
+      <input type="submit" value="Submit">
+    </form>
+    <div id="output"></div>
+
+    <script>
+      const form = document.getElementById('addUserForm');
+      const outputDiv = document.getElementById('output');
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const firstName = form.elements.firstName.value;
+        const lastName = form.elements.lastName.value;
+        const selectCity = form.elements.selectCity.value; // Get the selectCity value
+
+        google.script.run
+          .withSuccessHandler(output => {
+            outputDiv.innerHTML = `<p>${output}</p>`;
+            form.reset();
+          })
+          .withFailureHandler(err => {
+            outputDiv.innerHTML = `<p>Error: ${err.message}</p>`;
+          })
+          .addUser(firstName, lastName, selectCity); // Pass the selectCity value
+      });
+    </script>
+  </body>
+</html>
